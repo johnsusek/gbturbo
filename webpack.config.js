@@ -9,7 +9,7 @@ const { version } = require('./package.json');
 
 function transformHtml(content) {
   return ejs.render(content.toString(), {
-    ...process.env,
+    ...process.env
   });
 }
 
@@ -20,59 +20,79 @@ const config = {
     background: './background.js',
     'inject/ui': './inject/ui.js',
     'popup/popup': './popup/popup.js',
-    'options/options': './options/options.js',
+    'options/options': './options/options.js'
   },
   output: {
     path: `${__dirname}/dist`,
-    filename: '[name].js',
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
   module: {
     rules: [
       {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      },
+      {
         test: /\.vue$/,
-        loaders: 'vue-loader',
+        loaders: 'vue-loader'
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
         test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader?indentedSyntax'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader?indentedSyntax'
+        ]
       },
       {
         test: /\.(png|jpg|gif|svg|ico)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?emitFile=false',
-        },
-      },
-    ],
+          name: '[name].[ext]?emitFile=false'
+        }
+      }
+    ]
   },
   plugins: [
+    new webpack.NormalModuleReplacementPlugin(
+      /element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/,
+      'element-ui/lib/locale/lang/en'
+    ),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].css'
     }),
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
-      { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
+      {
+        from: 'popup/popup.html',
+        to: 'popup/popup.html',
+        transform: transformHtml
+      },
+      {
+        from: 'options/options.html',
+        to: 'options/options.html',
+        transform: transformHtml
+      },
       {
         from: 'manifest.json',
         to: 'manifest.json',
@@ -81,31 +101,33 @@ const config = {
           jsonContent.version = version;
 
           if (config.mode === 'development') {
-            jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            jsonContent.content_security_policy =              "script-src 'self' 'unsafe-eval'; object-src 'self'";
           }
 
           return JSON.stringify(jsonContent, null, 2);
-        },
-      },
+        }
+      }
     ]),
     new WebpackShellPlugin({
-      onBuildEnd: ['node scripts/remove-evals.js'],
-    }),
-  ],
+      onBuildEnd: ['node scripts/remove-evals.js']
+    })
+  ]
 };
 
 if (config.mode === 'production') {
   config.plugins = (config.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
+        NODE_ENV: '"production"'
+      }
+    })
   ]);
 }
 
 if (process.env.HMR === 'true') {
-  config.plugins = (config.plugins || []).concat([new ChromeExtensionReloader()]);
+  config.plugins = (config.plugins || []).concat([
+    new ChromeExtensionReloader()
+  ]);
 }
 
 module.exports = config;

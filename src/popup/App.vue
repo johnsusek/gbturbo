@@ -1,40 +1,50 @@
 <template>
-  <div>
-    <h1 :style="style">{{ message }}</h1>
-    <div>
-      <button @click="giveBlues">Give Blues</button>
-      <button @click="makeAngry">Make Angry</button>
-    </div>
-  </div>
+  <main>
+    <el-form :model="$store.state.config" label-position="top">
+      <el-form-item prop="reorder" label="Re-order homepage modules">
+        <el-switch v-model="reorder">Test</el-switch>
+        <label>
+          When enabled, drag handles will appear next to each section on the homepage.
+          Drag the handles up or down to re-arrange homepage modules.
+        </label>
+      </el-form-item>
+    </el-form>
+  </main>
 </template>
 
 <script>
-import { store } from '../store';
-
 export default {
   data() {
-    return {
-      color: store.state.synced.color,
-      message: store.state.synced.message,
-    };
+    return {};
   },
 
   computed: {
-    style() {
-      if (!this.color) return;
-      let { r, g, b } = this.color;
-      return `color: rgb(${r}, ${g}, ${b});`;
-    },
-  },
-
-  methods: {
-    giveBlues() {
-      store.commit('GIVE_BLUES');
-    },
-    makeAngry() {
-      console.log('commiting makeangry');
-      store.commit('MAKE_ANGRY');
-    },
-  },
+    reorder: {
+      get() {
+        return this.$store.state.config.reorder;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_REORDER', value);
+      }
+    }
+  }
 };
 </script>
+
+<style>
+main {
+  width: 640px;
+}
+
+.el-form--label-top .el-form-item__label {
+  padding: 0;
+}
+
+.el-form-item__content > label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  line-height: 1.3;
+  padding-top: 3px;
+}
+</style>

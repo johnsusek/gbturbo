@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "@vue/eslint-config-airbnb": "^4.0.0",
+    "element-ui": "^2.4.9",
     "eslint-plugin-html": "^5.0.0-alpha.0",
+    "regenerator-runtime": "^0.12.1",
     "sortablejs": "^1.7.0",
     "vue": "^2.5.17",
     "vuex": "^3.0.1",

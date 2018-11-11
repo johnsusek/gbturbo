@@ -4,11 +4,11 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: 'babel-eslint'
   },
   env: {
     browser: true,
-    webextensions: true,
+    webextensions: true
   },
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
@@ -19,9 +19,9 @@ module.exports = {
   settings: {
     'import/resolver': {
       webpack: {
-        config: './webpack.config.js',
-      },
-    },
+        config: './webpack.config.js'
+      }
+    }
   },
   // add your custom rules here
   rules: {
@@ -41,7 +41,7 @@ module.exports = {
     'no-console': 'off',
     'no-alert': 'off',
     'prefer-const': 'off',
-    'comma-dangle': 'never',
+    'comma-dangle': 'off',
     'prefer-destructuring': 'off',
     'space-before-function-paren': 'off',
     'no-new': 'off',
@@ -55,16 +55,16 @@ module.exports = {
       'always',
       {
         js: 'never',
-        vue: 'never',
-      },
+        vue: 'never'
+      }
     ],
     'no-param-reassign': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
-        optionalDependencies: ['test/unit/index.js'],
-      },
+        optionalDependencies: ['test/unit/index.js']
+      }
     ],
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-  },
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+  }
 };

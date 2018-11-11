@@ -13,18 +13,16 @@
   },
   "content_scripts": [
     {
-      "js": [
-        "inject/ui.js"
-      ],
-      "matches": [
-        "https://www.giantbomb.com/*"
-      ]
+      "js": ["inject/ui.js"],
+      "css": ["inject/ui.css"],
+      "matches": ["https://www.giantbomb.com/*"],
+      "run_at": "document_end"
     }
   ],
+  "web_accessible_resources": ["icons/*"],
+  "permissions": ["tabs", "storage"],
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "options_ui": {
     "page": "options/options.html",
