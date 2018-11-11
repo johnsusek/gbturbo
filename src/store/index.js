@@ -6,7 +6,19 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     config: {
-      reorder: false
+      reorder: false,
+      emsmallen: false,
+      latest_grid: false,
+      modules_community: true,
+      modules_threepromo: true,
+      modules_frontdoor_promos: true,
+      modules_infinite: true,
+      modules_latest: true,
+      modules_continue: true,
+      modules_popular: true,
+      modules_quicklooks: true,
+      modules_shows: true,
+      modules_history: true
     }
   },
   mutations: {
@@ -16,13 +28,106 @@ export const store = new Vuex.Store({
 
     UPDATE_REORDER(state, value) {
       state.config.reorder = value;
+    },
+
+    UPDATE_EMSMALLEN(state, value) {
+      state.config.emsmallen = value;
+    },
+
+    UPDATE_LATEST_GRID(state, value) {
+      state.config.latest_grid = value;
+    },
+
+    UPDATE_MODULES_COMMUNITY(state, value) {
+      state.config.modules_community = !!value;
+    },
+
+    UPDATE_MODULES_THREEPROMO(state, value) {
+      state.config.modules_threepromo = !!value;
+    },
+
+    UPDATE_MODULES_FRONTDOOR_PROMOS(state, value) {
+      state.config.modules_frontdoor_promos = !!value;
+    },
+
+    UPDATE_MODULES_INFINITE(state, value) {
+      state.config.modules_infinite = !!value;
+    },
+
+    UPDATE_MODULES_LATEST(state, value) {
+      state.config.modules_latest = !!value;
+    },
+
+    UPDATE_MODULES_CONTINUE(state, value) {
+      state.config.modules_continue = !!value;
+    },
+
+    UPDATE_MODULES_POPULAR(state, value) {
+      state.config.modules_popular = !!value;
+    },
+
+    UPDATE_MODULES_QUICKLOOKS(state, value) {
+      state.config.modules_quicklooks = !!value;
+    },
+
+    UPDATE_MODULES_SHOWS(state, value) {
+      state.config.modules_shows = !!value;
+    },
+
+    UPDATE_MODULES_HISTORY(state, value) {
+      state.config.modules_history = !!value;
     }
   }
 });
 
 chrome.storage.sync.get('state', result => {
   if (result.state && result.state.config) {
-    store.commit('UPDATE_CONFIG', result.state.config);
+    store.commit('UPDATE_REORDER', result.state.config.reorder === true);
+    store.commit('UPDATE_EMSMALLEN', result.state.config.emsmallen === true);
+    store.commit(
+      'UPDATE_LATEST_GRID',
+      result.state.config.latest_grid === true
+    );
+    store.commit(
+      'UPDATE_MODULES_COMMUNITY',
+      result.state.config.modules_community !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_THREEPROMO',
+      result.state.config.modules_threepromo !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_FRONTDOOR_PROMOS',
+      result.state.config.modules_frontdoor_promos !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_INFINITE',
+      result.state.config.modules_infinite !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_LATEST',
+      result.state.config.modules_latest !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_CONTINUE',
+      result.state.config.modules_continue !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_POPULAR',
+      result.state.config.modules_popular !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_QUICKLOOKS',
+      result.state.config.modules_quicklooks !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_SHOWS',
+      result.state.config.modules_shows !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_HISTORY',
+      result.state.config.modules_history !== false
+    );
   }
 });
 

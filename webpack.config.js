@@ -19,8 +19,7 @@ const config = {
   entry: {
     background: './background.js',
     'inject/ui': './inject/ui.js',
-    'popup/popup': './popup/popup.js',
-    'options/options': './options/options.js'
+    'popup/popup': './popup/popup.js'
   },
   output: {
     path: `${__dirname}/dist`,
@@ -86,11 +85,6 @@ const config = {
       {
         from: 'popup/popup.html',
         to: 'popup/popup.html',
-        transform: transformHtml
-      },
-      {
-        from: 'options/options.html',
-        to: 'options/options.html',
         transform: transformHtml
       },
       {

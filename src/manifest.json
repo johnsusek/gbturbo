@@ -1,7 +1,10 @@
 {
-  "name": "gbturbo",
-  "description": "Giant Bomb Turbo",
-  "version": null,
+  "name": "GB Turbo",
+  "short_name": "GB Turbo",
+  "description": "Customize Giant Bomb (giantbomb.com) to your hearts content.",
+  "version": "0.1",
+  "version_name": "ALPHA EX",
+  "author": "John Susek",
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48.png",
@@ -23,9 +26,5 @@
   "permissions": ["tabs", "storage"],
   "background": {
     "scripts": ["background.js"]
-  },
-  "options_ui": {
-    "page": "options/options.html",
-    "chrome_style": true
   }
 }

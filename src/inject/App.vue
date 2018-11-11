@@ -9,11 +9,84 @@ export default {
   watch: {
     '$store.state.config': {
       initial: true,
+
       handler(config) {
         if (config.reorder) {
           document.body.classList.add('gbt-show-reorder');
         } else {
           document.body.classList.remove('gbt-show-reorder');
+        }
+
+        if (config.emsmallen) {
+          document.body.classList.add('gbt-emsmallen');
+        } else {
+          document.body.classList.remove('gbt-emsmallen');
+        }
+
+        if (config.latest_grid) {
+          document.body.classList.add('gbt-latest-grid');
+        } else {
+          document.body.classList.remove('gbt-latest-grid');
+        }
+
+        if (!config.modules_threepromo) {
+          document.body.classList.add('gbt-hide-threepromo');
+        } else {
+          document.body.classList.remove('gbt-hide-threepromo');
+        }
+
+        if (!config.modules_frontdoor_promos) {
+          document.body.classList.add('gbt-hide-frontdoor_promos');
+        } else {
+          document.body.classList.remove('gbt-hide-frontdoor_promos');
+        }
+
+        if (!config.modules_infinite) {
+          document.body.classList.add('gbt-hide-infinite');
+        } else {
+          document.body.classList.remove('gbt-hide-infinite');
+        }
+
+        if (!config.modules_latest) {
+          document.body.classList.add('gbt-hide-latest');
+        } else {
+          document.body.classList.remove('gbt-hide-latest');
+        }
+
+        if (!config.modules_community) {
+          document.body.classList.add('gbt-hide-community');
+        } else {
+          document.body.classList.remove('gbt-hide-community');
+        }
+
+        if (!config.modules_continue) {
+          document.body.classList.add('gbt-hide-continue');
+        } else {
+          document.body.classList.remove('gbt-hide-continue');
+        }
+
+        if (!config.modules_popular) {
+          document.body.classList.add('gbt-hide-popular');
+        } else {
+          document.body.classList.remove('gbt-hide-popular');
+        }
+
+        if (!config.modules_quicklooks) {
+          document.body.classList.add('gbt-hide-quicklooks');
+        } else {
+          document.body.classList.remove('gbt-hide-quicklooks');
+        }
+
+        if (!config.modules_shows) {
+          document.body.classList.add('gbt-hide-shows');
+        } else {
+          document.body.classList.remove('gbt-hide-shows');
+        }
+
+        if (!config.modules_history) {
+          document.body.classList.add('gbt-hide-history');
+        } else {
+          document.body.classList.remove('gbt-hide-history');
         }
       }
     }
@@ -105,7 +178,71 @@ export default {
   cursor: move;
 }
 
+.gbt-emsmallen .kubrick-topslot .hover-play-pause .hover-play-icon,
+.gbt-emsmallen .kubrick-topslot {
+  height: 54vh;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__slot {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__strip {
+  display: block;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__control {
+  display: none;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__slot.more {
+  display: block;
+  padding: 10px;
+  max-width: 100% !important;
+}
+
 .gbt-show-reorder .gbt-drag-handle {
   display: block;
+}
+
+.gbt-hide-community [data-id='community'] {
+  display: none;
+}
+
+.gbt-hide-threepromo [data-id='three-promo-strip'] {
+  display: none;
+}
+
+.gbt-hide-frontdoor_promos [data-id='frontdoor-promos'] {
+  display: none;
+}
+
+.gbt-hide-infinite [data-id='infinite-promo'] {
+  display: none;
+}
+
+.gbt-hide-latest [data-id='latest'] {
+  display: none;
+}
+
+.gbt-hide-continue [data-id='continue-watching'] {
+  display: none;
+}
+
+.gbt-hide-popular [data-id='popular'] {
+  display: none;
+}
+
+.gbt-hide-quicklooks [data-id='quick-looks'] {
+  display: none;
+}
+
+.gbt-hide-shows [data-id='shows'] {
+  display: none;
+}
+
+.gbt-hide-history [data-id='history'] {
+  display: none;
 }
 </style>
