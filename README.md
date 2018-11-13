@@ -4,6 +4,8 @@ Customize giantbomb.com to your heart's content.
 
 ## Development
 
+`npm install`
+
 ### Chrome
 
 `npm run watch:dev:chrome`
