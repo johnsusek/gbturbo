@@ -30,7 +30,7 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
-### 0.2.0
+### 0.2.1
 
 - Firefox support
 - Bug fixes
