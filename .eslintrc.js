@@ -44,6 +44,7 @@ module.exports = {
     'comma-dangle': 'off',
     'prefer-destructuring': 'off',
     'space-before-function-paren': 'off',
+    'operator-linebreak': 'off',
     'no-new': 'off',
     'max-len': ['error', { ignoreStrings: true, code: 120 }],
     'vue/require-v-for-key': 'off',

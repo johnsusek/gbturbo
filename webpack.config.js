@@ -19,7 +19,9 @@ const config = {
   entry: {
     background: './background.js',
     'inject/ui': './inject/ui.js',
-    'popup/popup': './popup/popup.js'
+    'inject/lib/sortable': './inject/lib/sortable.js',
+    'popup/popup': './popup/popup.js',
+    'popup/style': './popup/style.css'
   },
   output: {
     path: `${__dirname}/dist`,
@@ -44,6 +46,19 @@ const config = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                modules: 'commonjs',
+                targets: {
+                  node: 'current'
+                }
+              }
+            ]
+          ]
+        },
         exclude: /node_modules/
       },
       {
@@ -73,7 +88,7 @@ const config = {
   },
   plugins: [
     new webpack.NormalModuleReplacementPlugin(
-      /element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/,
+      /element-ui[/\\]lib[/\\]locale[/\\]lang[/\\]zh-CN/,
       'element-ui/lib/locale/lang/en'
     ),
     new VueLoaderPlugin(),
@@ -95,7 +110,8 @@ const config = {
           jsonContent.version = version;
 
           if (config.mode === 'development') {
-            jsonContent.content_security_policy =              "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            jsonContent.content_security_policy =
+              "script-src 'self' 'unsafe-eval'; object-src 'self'";
           }
 
           return JSON.stringify(jsonContent, null, 2);

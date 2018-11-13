@@ -1,9 +1,8 @@
 {
-  "name": "GB Turbo",
-  "short_name": "GB Turbo",
-  "description": "Customize Giant Bomb (giantbomb.com) to your hearts content.",
+  "name": "Giant Bomb Turbo",
+  "short_name": "Giant Bomb Turbo",
+  "description": "Customize Giant Bomb (2018 redesign) to your hearts content.",
   "version": "0.1",
-  "version_name": "ALPHA EX",
   "author": "John Susek",
   "manifest_version": 2,
   "icons": {
@@ -12,13 +11,17 @@
   },
   "browser_action": {
     "default_title": "gbturbo",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon_48.png",
+      "128": "icons/icon_128.png"
+    }
   },
   "content_scripts": [
     {
-      "js": ["inject/ui.js"],
+      "js": ["inject/lib/sortable.js", "inject/ui.js"],
       "css": ["inject/ui.css"],
-      "matches": ["https://www.giantbomb.com/*"],
+      "matches": ["https://www.giantbomb.com/"],
       "run_at": "document_end"
     }
   ],
@@ -26,5 +29,10 @@
   "permissions": ["tabs", "storage"],
   "background": {
     "scripts": ["background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "gbturbo@johnsolo.net"
+    }
   }
 }

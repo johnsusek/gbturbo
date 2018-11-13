@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Sortable from 'sortablejs';
+/* global Sortable */
 
 export default {
   watch: {
@@ -93,53 +93,57 @@ export default {
   },
 
   created() {
-    let gripIcon = chrome.runtime.getURL('icons/drag-handle.svg');
-
-    Array.from(document.querySelectorAll('#wrapper > .site-container > *')).forEach(el => {
-      if (el.classList.contains('frontdoor-community-section')) {
-        el.dataset.id = 'community';
-        el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-      } else if (el.classList.contains('promo-strip-template') && el.classList.contains('three-promos')) {
-        el.dataset.id = 'three-promo-strip';
-        el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-      } else if (el.classList.contains('frontdoor-promos-section')) {
-        el.dataset.id = 'frontdoor-promos';
-        el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-      } else if (el.classList.contains('infinite-simple-promo')) {
-        el.dataset.id = 'infinite-promo';
-        el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-      } else if (el.classList.contains('frontdoor-pod')) {
-        if (el.querySelector('h3').textContent === 'Latest') {
-          el.dataset.id = 'latest';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        } else if (el.querySelector('h3').textContent === 'Continue Watching') {
-          el.dataset.id = 'continue-watching';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        } else if (el.querySelector('h3').textContent === 'Popular Videos') {
-          el.dataset.id = 'popular';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        } else if (el.querySelector('h3').textContent === 'Quick Looks') {
-          el.dataset.id = 'quick-looks';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        } else if (el.querySelector('h3').textContent === 'Shows') {
-          el.dataset.id = 'shows';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        } else if (el.querySelector('h3').textContent === 'This Day in Giant Bomb History') {
-          el.dataset.id = 'history';
-          el.insertAdjacentHTML('afterbegin', `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`);
-        }
-      }
-    });
-
-    chrome.storage.sync.get('gbt-homepage-pods', result => {
-      let res = result['gbt-homepage-pods'];
-      let order = res ? res.split('|') : [];
-      this.createSortable(order);
-    });
+    this.prepareDraggableModules();
+    this.createSortable();
   },
 
   methods: {
-    createSortable(order) {
+    prepareDraggableModules() {
+      let gripIcon = browser.runtime.getURL('icons/drag-handle.svg');
+      let dragHandle = `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`;
+
+      Array.from(document.querySelectorAll('#wrapper > .site-container > *')).forEach(el => {
+        if (el.classList.contains('frontdoor-community-section')) {
+          el.dataset.id = 'community';
+          el.insertAdjacentHTML('afterbegin', dragHandle);
+        } else if (el.classList.contains('promo-strip-template') && el.classList.contains('three-promos')) {
+          el.dataset.id = 'three-promo-strip';
+          el.insertAdjacentHTML('afterbegin', dragHandle);
+        } else if (el.classList.contains('frontdoor-promos-section')) {
+          el.dataset.id = 'frontdoor-promos';
+          el.insertAdjacentHTML('afterbegin', dragHandle);
+        } else if (el.classList.contains('infinite-simple-promo')) {
+          el.dataset.id = 'infinite-promo';
+          el.insertAdjacentHTML('afterbegin', dragHandle);
+        } else if (el.classList.contains('frontdoor-pod')) {
+          if (el.querySelector('h3').textContent === 'Latest') {
+            el.dataset.id = 'latest';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent === 'Continue Watching') {
+            el.dataset.id = 'continue-watching';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent === 'Popular Videos') {
+            el.dataset.id = 'popular';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent === 'Quick Looks') {
+            el.dataset.id = 'quick-looks';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent === 'Shows') {
+            el.dataset.id = 'shows';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent === 'This Day in Giant Bomb History') {
+            el.dataset.id = 'history';
+            el.insertAdjacentHTML('afterbegin', dragHandle);
+          }
+        }
+      });
+    },
+
+    async createSortable() {
+      let result = await browser.storage.sync.get('gbt-homepage-pods');
+      let res = result['gbt-homepage-pods'];
+      let order = res ? res.split('|') : [];
+
       let el = document.querySelector('#wrapper > .site-container');
 
       Sortable.create(el, {
@@ -152,7 +156,7 @@ export default {
 
           set(sortable) {
             let sortOrder = sortable.toArray() || [];
-            chrome.storage.sync.set({
+            browser.storage.sync.set({
               'gbt-homepage-pods': sortOrder.join('|')
             });
           }

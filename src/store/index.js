@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+global.browser = require('webextension-polyfill');
+
 export const store = new Vuex.Store({
   state: {
     config: {
@@ -80,7 +82,7 @@ export const store = new Vuex.Store({
   }
 });
 
-chrome.storage.sync.get('state', result => {
+browser.storage.sync.get('state').then(result => {
   if (result.state && result.state.config) {
     store.commit('UPDATE_REORDER', result.state.config.reorder === true);
     store.commit('UPDATE_EMSMALLEN', result.state.config.emsmallen === true);
@@ -133,12 +135,12 @@ chrome.storage.sync.get('state', result => {
 
 // Subscribe to state updates on the store, to send to content scripts
 store.subscribe((mutation, state) => {
-  chrome.storage.sync.set({ state });
+  browser.storage.sync.set({ state });
 
   // TODO: track STATE_INITIAL senders, and only send to them
-  chrome.tabs.query({}, tabs => {
+  browser.tabs.query({ url: 'https://www.giantbomb.com/*' }).then(tabs => {
     tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id, {
+      browser.tabs.sendMessage(tab.id, {
         name: 'STATE_UPDATE',
         payload: state
       });
@@ -147,15 +149,15 @@ store.subscribe((mutation, state) => {
 });
 
 // Listen to incoming mutations
-chrome.runtime.onMessage.addListener((request, sender) => {
+browser.runtime.onMessage.addListener((request, sender) => {
   if (request.name === 'STATE_MUTATION') {
     // A tab has sent up a mutation
     store.commit(request.details.name, request.details.args);
   } else if (request.name === 'STATE_INITIAL') {
-    chrome.storage.sync.get('state', result => {
+    browser.storage.sync.get('state').then(result => {
       if (result.state && result.state.config) {
         // A tab has requested initial state
-        chrome.tabs.sendMessage(sender.tab.id, {
+        browser.tabs.sendMessage(sender.tab.id, {
           name: 'STATE_UPDATE',
           payload: result.state
         });
