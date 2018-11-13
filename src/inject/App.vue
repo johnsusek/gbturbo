@@ -94,7 +94,9 @@ export default {
 
   created() {
     this.prepareDraggableModules();
-    this.createSortable();
+    setTimeout(() => {
+      this.createSortable();
+    }, 10);
   },
 
   methods: {
@@ -140,9 +142,14 @@ export default {
     },
 
     async createSortable() {
-      let result = await browser.storage.sync.get('gbt-homepage-pods');
-      let res = result['gbt-homepage-pods'];
-      let order = res ? res.split('|') : [];
+      let order;
+      try {
+        let result = await browser.storage.sync.get('gbt-homepage-pods');
+        let res = result['gbt-homepage-pods'];
+        order = res ? res.split('|') : [];
+      } catch (error) {
+        console.error(error);
+      }
 
       let el = document.querySelector('#wrapper > .site-container');
 

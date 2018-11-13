@@ -1,6 +1,6 @@
 {
   "name": "gbturbo",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Giant Bomb Turbo",
   "author": "John Susek <john@johnsolo.net>",
   "scripts": {
@@ -8,18 +8,20 @@
     "precommit": "pretty-quick --staged",
     "prettier": "prettier \"src/**/*.{js,vue}\"",
     "prettier:write": "npm run prettier -- --write",
-    "build": "cross-env NODE_ENV=production webpack --hide-modules",
-    "build:dev": "cross-env NODE_ENV=development webpack --hide-modules",
+    "build:chrome": "cross-env NODE_ENV=production EXTENSION_TARGET=chrome webpack --hide-modules",
+    "build:firefox": "cross-env NODE_ENV=production EXTENSION_TARGET=firefox webpack --hide-modules",
+    "build:dev:chrome": "cross-env NODE_ENV=development EXTENSION_TARGET=chrome webpack --hide-modules",
+    "build:dev:firefox": "cross-env NODE_ENV=development EXTENSION_TARGET=firefox webpack --hide-modules",
     "build-zip": "node scripts/build-zip.js",
     "watch": "npm run build -- --watch",
-    "watch:dev": "cross-env HMR=true npm run build:dev -- --watch"
+    "watch:dev:chrome": "cross-env HMR=true npm run build:dev:chrome -- --watch",
+    "watch:dev:firefox": "cross-env HMR=true npm run build:dev:firefox -- --watch"
   },
   "dependencies": {
     "@vue/eslint-config-airbnb": "^4.0.0",
     "element-ui": "^2.4.9",
     "eslint-plugin-html": "^5.0.0-alpha.0",
     "regenerator-runtime": "^0.12.1",
-    "sortablejs": "^1.7.0",
     "vue": "^2.5.17",
     "vuex": "^3.0.1",
     "webextension-polyfill": "^0.3.1"

@@ -13,6 +13,8 @@ function transformHtml(content) {
   });
 }
 
+let browser = process.env.EXTENSION_TARGET;
+
 const config = {
   mode: process.env.NODE_ENV,
   context: `${__dirname}/src`,
@@ -112,6 +114,14 @@ const config = {
           if (config.mode === 'development') {
             jsonContent.content_security_policy =
               "script-src 'self' 'unsafe-eval'; object-src 'self'";
+          }
+
+          if (browser === 'firefox') {
+            jsonContent.browser_specific_settings = {
+              gecko: {
+                id: 'gbturbo@johnsolo.net'
+              }
+            };
           }
 
           return JSON.stringify(jsonContent, null, 2);
