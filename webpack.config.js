@@ -117,7 +117,7 @@ const config = {
           }
 
           if (browser === 'firefox') {
-            jsonContent.browser_specific_settings = {
+            jsonContent.application = {
               gecko: {
                 id: 'gbturbo@johnsolo.net'
               }
