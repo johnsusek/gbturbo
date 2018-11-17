@@ -194,6 +194,10 @@ export default {
   height: 54vh;
 }
 
+.gbt-emsmallen .kubrick-topslot {
+  background-position: center;
+}
+
 .gbt-latest-grid [data-id='latest'] .carousel-strip__slot {
   display: inline-block;
   vertical-align: top;
