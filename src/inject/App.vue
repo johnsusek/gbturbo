@@ -124,7 +124,7 @@ export default {
           } else if (el.querySelector('h3').textContent === 'Continue Watching') {
             el.dataset.id = 'continue-watching';
             el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'Popular Videos') {
+          } else if (el.querySelector('h3').textContent === 'Popular') {
             el.dataset.id = 'popular';
             el.insertAdjacentHTML('afterbegin', dragHandle);
           } else if (el.querySelector('h3').textContent === 'Quick Looks') {
