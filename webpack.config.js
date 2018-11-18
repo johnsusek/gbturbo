@@ -23,7 +23,7 @@ const config = {
     'inject/ui': './inject/ui.js',
     'inject/lib/sortable': './inject/lib/sortable.js',
     'popup/popup': './popup/popup.js',
-    'popup/style': './popup/style.css'
+    'popup/style': './popup/style.scss'
   },
   output: {
     path: `${__dirname}/dist`,

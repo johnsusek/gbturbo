@@ -1,11 +1,12 @@
 <template>
   <main>
     <el-form :model="$store.state.config" label-position="top">
-      <el-form-item prop="emsmallen" label="Emsmallen header">
-        <el-switch v-model="emsmallen" />
-        <label>
-          Make the header less tall.
-        </label>
+      <el-form-item prop="header_size" label="Header">
+        <el-select v-model="header_size">
+          <el-option label="Mini" value="mini" />
+          <el-option label="Small" value="small" />
+          <el-option label="Full" value="full" />
+        </el-select>
       </el-form-item>
 
       <el-form-item prop="reorder" label="Draggable homepage modules">
@@ -77,12 +78,12 @@ export default {
   },
 
   computed: {
-    emsmallen: {
+    header_size: {
       get() {
-        return this.$store.state.config.emsmallen;
+        return this.$store.state.config.header_size;
       },
       set(value) {
-        this.$store.commit('UPDATE_EMSMALLEN', value);
+        this.$store.commit('UPDATE_HEADER_SIZE', value);
       }
     },
 

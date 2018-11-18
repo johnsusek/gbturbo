@@ -8,6 +8,7 @@ global.browser = require('webextension-polyfill');
 export const store = new Vuex.Store({
   state: {
     config: {
+      header_size: 'full',
       reorder: false,
       emsmallen: false,
       latest_grid: false,
@@ -26,6 +27,10 @@ export const store = new Vuex.Store({
   mutations: {
     UPDATE_CONFIG(state, value) {
       state.config = value;
+    },
+
+    UPDATE_HEADER_SIZE(state, value) {
+      state.config.header_size = value;
     },
 
     UPDATE_REORDER(state, value) {
@@ -84,6 +89,7 @@ export const store = new Vuex.Store({
 
 browser.storage.sync.get('state').then(result => {
   if (result.state && result.state.config) {
+    store.commit('UPDATE_HEADER_SIZE', result.state.config.header_size);
     store.commit('UPDATE_REORDER', result.state.config.reorder === true);
     store.commit('UPDATE_EMSMALLEN', result.state.config.emsmallen === true);
     store.commit(
@@ -137,7 +143,6 @@ browser.storage.sync.get('state').then(result => {
 store.subscribe((mutation, state) => {
   browser.storage.sync.set({ state });
 
-  // TODO: track STATE_INITIAL senders, and only send to them
   browser.tabs.query({ url: 'https://www.giantbomb.com/*' }).then(tabs => {
     tabs.forEach(tab => {
       browser.tabs.sendMessage(tab.id, {

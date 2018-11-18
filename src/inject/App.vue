@@ -11,16 +11,26 @@ export default {
       initial: true,
 
       handler(config) {
+        let topslot = document.querySelector('.kubrick-topslot');
+
+        if (config.header_size === 'mini') {
+          topslot.classList.add('site-container');
+          document.body.classList.add('gbt-mini');
+        } else {
+          topslot.classList.remove('site-container');
+          document.body.classList.remove('gbt-mini');
+        }
+
+        if (config.header_size === 'small') {
+          document.body.classList.add('gbt-emsmallen');
+        } else {
+          document.body.classList.remove('gbt-emsmallen');
+        }
+
         if (config.reorder) {
           document.body.classList.add('gbt-show-reorder');
         } else {
           document.body.classList.remove('gbt-show-reorder');
-        }
-
-        if (config.emsmallen) {
-          document.body.classList.add('gbt-emsmallen');
-        } else {
-          document.body.classList.remove('gbt-emsmallen');
         }
 
         if (config.latest_grid) {
@@ -93,6 +103,10 @@ export default {
   },
 
   created() {
+    let upcoming = document.querySelector('.gb-promo-upcoming').cloneNode(true);
+    let topslot = document.querySelector('.kubrick-topslot');
+    topslot.appendChild(upcoming);
+
     this.prepareDraggableModules();
     setTimeout(() => {
       this.createSortable();
@@ -104,7 +118,7 @@ export default {
       let gripIcon = browser.runtime.getURL('icons/drag-handle.svg');
       let dragHandle = `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`;
 
-      Array.from(document.querySelectorAll('#wrapper > .site-container > *')).forEach(el => {
+      Array.from(document.querySelectorAll('#wrapper > .site-container:not(.kubrick-topslot) > *')).forEach(el => {
         if (el.classList.contains('frontdoor-community-section')) {
           el.dataset.id = 'community';
           el.insertAdjacentHTML('afterbegin', dragHandle);
@@ -151,7 +165,7 @@ export default {
         console.error(error);
       }
 
-      let el = document.querySelector('#wrapper > .site-container');
+      let el = document.querySelector('#wrapper > .site-container:not(.kubrick-topslot)');
 
       Sortable.create(el, {
         group: 'gbt-homepage-pods',
@@ -194,8 +208,44 @@ export default {
   height: 54vh;
 }
 
-.gbt-emsmallen .kubrick-topslot {
-  background-position: center;
+.kubrick-topslot .gb-promo-upcoming {
+  display: none;
+}
+
+.gbt-mini .kubrick-topslot .gb-promo-upcoming {
+  display: block;
+}
+
+.gbt-mini .kubrick-topslot {
+  position: relative;
+  background-size: 445px auto;
+  background-position: 0 30px;
+  height: 295px;
+}
+
+.gbt-mini .kubrick-topslot .kubrick-shadow {
+  position: absolute !important;
+  bottom: 10px;
+  top: 30px;
+  height: 100%;
+}
+
+.gbt-mini .kubrick-topslot-text {
+  margin: 0 0 0 20px;
+  align-self: self-start;
+  margin-bottom: 0 !important;
+  bottom: 54px;
+  position: absolute;
+}
+
+.kubrick-topslot .gb-promo-upcoming {
+  margin-left: 478px;
+  margin-top: 30px;
+  height: 252px;
+}
+
+.kubrick-topslot .gb-promo-upcoming p {
+  margin: 0;
 }
 
 .gbt-latest-grid [data-id='latest'] .carousel-strip__slot {
