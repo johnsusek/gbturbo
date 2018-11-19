@@ -32,6 +32,11 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.2.3
+
+- Add mini header option
+- Fix issue hiding/moving popular module
+
 ### 0.2.2
 
 - Fix for firefox store

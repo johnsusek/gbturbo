@@ -27,10 +27,6 @@
 
       <el-form-item prop="modules_community" label="Homepage modules">
         <div>
-          <el-switch v-model="modules_community" />
-          <span class="switch-label">Community</span>
-        </div>
-        <div>
           <el-switch v-model="modules_threepromo" />
           <span class="switch-label">Three-promo strip</span>
         </div>
@@ -51,12 +47,12 @@
           <span class="switch-label">Continue Watching</span>
         </div>
         <div>
-          <el-switch v-model="modules_popular" />
-          <span class="switch-label">Popular</span>
-        </div>
-        <div>
           <el-switch v-model="modules_quicklooks" />
           <span class="switch-label">Quicklooks</span>
+        </div>
+        <div>
+          <el-switch v-model="modules_popular" />
+          <span class="switch-label">Popular</span>
         </div>
         <div>
           <el-switch v-model="modules_shows" />
@@ -65,6 +61,10 @@
         <div>
           <el-switch v-model="modules_history" />
           <span class="switch-label">This day in Giant Bomb history</span>
+        </div>
+        <div>
+          <el-switch v-model="modules_community" />
+          <span class="switch-label">Community</span>
         </div>
       </el-form-item>
     </el-form>

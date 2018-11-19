@@ -117,11 +117,19 @@ const config = {
           }
 
           if (browser === 'firefox') {
-            jsonContent.application = {
-              gecko: {
-                id: 'gbturbo@johnsolo.net'
-              }
-            };
+            if (config.mode === 'development') {
+              jsonContent.browser_specific_settings = {
+                gecko: {
+                  id: 'gbturbo@johnsolo.net'
+                }
+              };
+            } else {
+              jsonContent.application = {
+                gecko: {
+                  id: 'gbturbo@johnsolo.net'
+                }
+              };
+            }
           }
 
           return JSON.stringify(jsonContent, null, 2);
