@@ -1,0 +1,49 @@
+/* We copy upcoming into the header, but hide it by default,
+   because it should only be displayed when in mini */
+.kubrick-topslot .gb-promo-upcoming {
+  display: none;
+}
+
+/* We are in mini mode, so show upcoming in the header */
+.gbt-mini .kubrick-topslot .gb-promo-upcoming {
+  display: block;
+}
+
+.gbt-mini .kubrick-topslot {
+  position: relative;
+  background-size: 455px auto;
+  background-position: 0 30px;
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.gbt-mini .kubrick-topslot .kubrick-shadow {
+  position: absolute !important;
+  bottom: 10px;
+  top: 30px;
+  height: 100%;
+}
+
+.gbt-mini .kubrick-topslot-text {
+  margin: 0 0 0 20px;
+  align-self: self-start;
+  margin-bottom: 0 !important;
+  bottom: 54px;
+  position: absolute;
+  width: 435px;
+}
+
+.gbt-mini .kubrick-topslot .gb-promo-upcoming {
+  margin-left: 478px;
+  margin-top: 30px;
+  height: 255px;
+  overflow-y: auto;
+}
+
+.gbt-mini .kubrick-topslot .gb-promo-upcoming p {
+  margin: 0;
+}
+
+.gbt-mini .absolute-play-pause {
+  display: none !important;
+}

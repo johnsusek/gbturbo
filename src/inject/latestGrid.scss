@@ -1,0 +1,18 @@
+.gbt-latest-grid [data-id='latest'] .carousel-strip__slot {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__strip {
+  display: block;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__control {
+  display: none;
+}
+
+.gbt-latest-grid [data-id='latest'] .carousel-strip__slot.more {
+  display: block;
+  padding: 10px;
+  max-width: 100% !important;
+}

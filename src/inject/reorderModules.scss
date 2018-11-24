@@ -1,0 +1,18 @@
+// So drag handles can be positioned absolutely within modules
+#wrapper > .site-container > * {
+  position: relative;
+}
+
+.gbt-drag-handle {
+  display: none;
+  position: absolute;
+  top: -3px;
+  left: -42px;
+  width: 32px;
+  height: auto;
+  cursor: move;
+}
+
+.gbt-show-reorder .gbt-drag-handle {
+  display: block;
+}

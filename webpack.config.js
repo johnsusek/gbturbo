@@ -120,13 +120,13 @@ const config = {
             if (config.mode === 'development') {
               jsonContent.browser_specific_settings = {
                 gecko: {
-                  id: 'gbturbo@johnsolo.net'
+                  id: '{b5db7e3f-7d0f-412a-af04-d7758dd1280d}'
                 }
               };
             } else {
               jsonContent.application = {
                 gecko: {
-                  id: 'gbturbo@johnsolo.net'
+                  id: '{b5db7e3f-7d0f-412a-af04-d7758dd1280d}'
                 }
               };
             }
