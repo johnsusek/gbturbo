@@ -32,6 +32,10 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.2.5
+
+- Fix issue when there are no upcoming shows
+
 ### 0.2.4
 
 - Fix issue with mini header rendering

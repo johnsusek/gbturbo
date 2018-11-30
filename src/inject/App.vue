@@ -103,9 +103,14 @@ export default {
   },
 
   created() {
-    let upcoming = document.querySelector('.gb-promo-upcoming').cloneNode(true);
-    let topslot = document.querySelector('.kubrick-topslot');
-    topslot.appendChild(upcoming);
+    let upcomingNode = document.querySelector('.gb-promo-upcoming-broke');
+    let upcoming;
+
+    if (upcomingNode) {
+      upcoming = upcomingNode.cloneNode(true);
+      let topslot = document.querySelector('.kubrick-topslot');
+      topslot.appendChild(upcoming);
+    }
 
     this.prepareDraggableModules();
     setTimeout(() => {
@@ -118,11 +123,18 @@ export default {
       let gripIcon = browser.runtime.getURL('icons/drag-handle.svg');
       let dragHandle = `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`;
 
-      Array.from(document.querySelectorAll('#wrapper > .site-container:not(.kubrick-topslot) > *')).forEach(el => {
+      Array.from(
+        document.querySelectorAll(
+          '#wrapper > .site-container:not(.kubrick-topslot) > *'
+        )
+      ).forEach(el => {
         if (el.classList.contains('frontdoor-community-section')) {
           el.dataset.id = 'community';
           el.insertAdjacentHTML('afterbegin', dragHandle);
-        } else if (el.classList.contains('promo-strip-template') && el.classList.contains('three-promos')) {
+        } else if (
+          el.classList.contains('promo-strip-template') &&
+          el.classList.contains('three-promos')
+        ) {
           el.dataset.id = 'three-promo-strip';
           el.insertAdjacentHTML('afterbegin', dragHandle);
         } else if (el.classList.contains('frontdoor-promos-section')) {
@@ -135,7 +147,9 @@ export default {
           if (el.querySelector('h3').textContent === 'Latest') {
             el.dataset.id = 'latest';
             el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'Continue Watching') {
+          } else if (
+            el.querySelector('h3').textContent === 'Continue Watching'
+          ) {
             el.dataset.id = 'continue-watching';
             el.insertAdjacentHTML('afterbegin', dragHandle);
           } else if (el.querySelector('h3').textContent === 'Popular') {
@@ -147,7 +161,10 @@ export default {
           } else if (el.querySelector('h3').textContent === 'Shows') {
             el.dataset.id = 'shows';
             el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'This Day in Giant Bomb History') {
+          } else if (
+            el.querySelector('h3').textContent ===
+            'This Day in Giant Bomb History'
+          ) {
             el.dataset.id = 'history';
             el.insertAdjacentHTML('afterbegin', dragHandle);
           }
@@ -165,7 +182,9 @@ export default {
         console.error(error);
       }
 
-      let el = document.querySelector('#wrapper > .site-container:not(.kubrick-topslot)');
+      let el = document.querySelector(
+        '#wrapper > .site-container:not(.kubrick-topslot)'
+      );
 
       Sortable.create(el, {
         group: 'gbt-homepage-pods',
