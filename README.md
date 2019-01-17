@@ -32,6 +32,10 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.2.7
+
+- Add toggle for Latest Premium section
+
 ### 0.2.6
 
 - Fix issue with latest grid
