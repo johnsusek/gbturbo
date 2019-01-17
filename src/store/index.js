@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
       modules_frontdoor_promos: true,
       modules_infinite: true,
       modules_latest: true,
+      modules_latest_premium: true,
       modules_continue: true,
       modules_popular: true,
       modules_quicklooks: true,
@@ -63,6 +64,10 @@ export const store = new Vuex.Store({
 
     UPDATE_MODULES_LATEST(state, value) {
       state.config.modules_latest = !!value;
+    },
+
+    UPDATE_MODULES_LATEST_PREMIUM(state, value) {
+      state.config.modules_latest_premium = !!value;
     },
 
     UPDATE_MODULES_CONTINUE(state, value) {
@@ -115,6 +120,10 @@ browser.storage.sync.get('state').then(result => {
     store.commit(
       'UPDATE_MODULES_LATEST',
       result.state.config.modules_latest !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_LATEST_PREMIUM',
+      result.state.config.modules_latest_premium !== false
     );
     store.commit(
       'UPDATE_MODULES_CONTINUE',

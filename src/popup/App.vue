@@ -12,16 +12,17 @@
       <el-form-item prop="reorder" label="Draggable homepage modules">
         <el-switch v-model="reorder" />
         <label>
-          When enabled, drag handles will appear next to each section on the homepage.
-          Drag the handles up or down to re-arrange homepage modules. Once you are done,
-          you can turn this off to hide the drag handles.
+          When enabled, drag handles will appear next to each section on the
+          homepage. Drag the handles up or down to re-arrange homepage modules.
+          Once you are done, you can turn this off to hide the drag handles.
         </label>
       </el-form-item>
 
       <el-form-item prop="latest_grid" label="Display “Latest” as grid">
         <el-switch v-model="latest_grid" />
         <label>
-          Turn this on to display latest videos in a grid instead of a carousella.
+          Turn this on to display latest videos in a grid instead of a
+          carousella.
         </label>
       </el-form-item>
 
@@ -41,6 +42,10 @@
         <div>
           <el-switch v-model="modules_latest" />
           <span class="switch-label">Latest</span>
+        </div>
+        <div>
+          <el-switch v-model="modules_latest_premium" />
+          <span class="switch-label">Latest Premium</span>
         </div>
         <div>
           <el-switch v-model="modules_continue" />
@@ -147,6 +152,15 @@ export default {
       },
       set(value) {
         this.$store.commit('UPDATE_MODULES_LATEST', value);
+      }
+    },
+
+    modules_latest_premium: {
+      get() {
+        return this.$store.state.config.modules_latest_premium;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_MODULES_LATEST_PREMIUM', value);
       }
     },
 
