@@ -14,7 +14,7 @@
   background-size: 455px auto;
   background-position: 0 30px;
   height: auto;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 }
 
 .gbt-mini .kubrick-topslot .kubrick-shadow {
@@ -31,6 +31,11 @@
   bottom: 54px;
   position: absolute;
   width: 435px;
+
+  h1,
+  h2 {
+    width: 100% !important;
+  }
 }
 
 .gbt-mini .kubrick-topslot .gb-promo-upcoming {
@@ -38,6 +43,7 @@
   margin-top: 30px;
   height: 255px;
   overflow-y: auto;
+  background: #404040;
 }
 
 .gbt-mini .kubrick-topslot .gb-promo-upcoming p {

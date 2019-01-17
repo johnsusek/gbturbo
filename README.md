@@ -32,6 +32,12 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.2.6
+
+- Fix issue with latest grid
+- Fix issue with text wrapping in mini header thumbnail
+- Fix issue with Upcoming background missing in mini header
+
 ### 0.2.5
 
 - Fix issue when there are no upcoming shows

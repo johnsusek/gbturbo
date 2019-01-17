@@ -103,7 +103,7 @@ export default {
   },
 
   created() {
-    let upcomingNode = document.querySelector('.gb-promo-upcoming-broke');
+    let upcomingNode = document.querySelector('.gb-promo-upcoming');
     let upcoming;
 
     if (upcomingNode) {
@@ -130,44 +130,33 @@ export default {
       ).forEach(el => {
         if (el.classList.contains('frontdoor-community-section')) {
           el.dataset.id = 'community';
-          el.insertAdjacentHTML('afterbegin', dragHandle);
         } else if (
           el.classList.contains('promo-strip-template') &&
           el.classList.contains('three-promos')
         ) {
           el.dataset.id = 'three-promo-strip';
-          el.insertAdjacentHTML('afterbegin', dragHandle);
         } else if (el.classList.contains('frontdoor-promos-section')) {
           el.dataset.id = 'frontdoor-promos';
-          el.insertAdjacentHTML('afterbegin', dragHandle);
         } else if (el.classList.contains('infinite-simple-promo')) {
           el.dataset.id = 'infinite-promo';
-          el.insertAdjacentHTML('afterbegin', dragHandle);
+        } else if (el.classList.contains('carousel__continue-watching')) {
+          el.dataset.id = 'continue-watching';
+        } else if (el.classList.contains('carousel__popular')) {
+          el.dataset.id = 'popular';
+        } else if (el.classList.contains('carousel__this-day-in-history')) {
+          el.dataset.id = 'history';
         } else if (el.classList.contains('frontdoor-pod')) {
-          if (el.querySelector('h3').textContent === 'Latest') {
-            el.dataset.id = 'latest';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (
-            el.querySelector('h3').textContent === 'Continue Watching'
-          ) {
-            el.dataset.id = 'continue-watching';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'Popular') {
-            el.dataset.id = 'popular';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'Quick Looks') {
+          if (el.querySelector('h3').textContent.includes('Quick Looks')) {
             el.dataset.id = 'quick-looks';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (el.querySelector('h3').textContent === 'Shows') {
+          } else if (el.querySelector('h3').textContent.includes('Shows')) {
             el.dataset.id = 'shows';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
-          } else if (
-            el.querySelector('h3').textContent ===
-            'This Day in Giant Bomb History'
-          ) {
-            el.dataset.id = 'history';
-            el.insertAdjacentHTML('afterbegin', dragHandle);
+          } else if (el.querySelector('h3').textContent.includes('Latest')) {
+            el.dataset.id = 'latest';
           }
+        }
+
+        if (el.dataset.id) {
+          el.insertAdjacentHTML('afterbegin', dragHandle);
         }
       });
     },
