@@ -39,12 +39,6 @@ export default {
           document.body.classList.remove('gbt-latest-grid');
         }
 
-        if (!config.modules_threepromo) {
-          document.body.classList.add('gbt-hide-threepromo');
-        } else {
-          document.body.classList.remove('gbt-hide-threepromo');
-        }
-
         if (!config.modules_frontdoor_promos) {
           document.body.classList.add('gbt-hide-frontdoor_promos');
         } else {
@@ -79,12 +73,6 @@ export default {
           document.body.classList.add('gbt-hide-continue');
         } else {
           document.body.classList.remove('gbt-hide-continue');
-        }
-
-        if (!config.modules_popular) {
-          document.body.classList.add('gbt-hide-popular');
-        } else {
-          document.body.classList.remove('gbt-hide-popular');
         }
 
         if (!config.modules_quicklooks) {
@@ -136,11 +124,6 @@ export default {
       ).forEach(el => {
         if (el.classList.contains('frontdoor-community-section')) {
           el.dataset.id = 'community';
-        } else if (
-          el.classList.contains('promo-strip-template') &&
-          el.classList.contains('three-promos')
-        ) {
-          el.dataset.id = 'three-promo-strip';
         } else if (el.classList.contains('frontdoor-promos-section')) {
           el.dataset.id = 'frontdoor-promos';
         } else if (el.classList.contains('infinite-simple-promo')) {
@@ -151,8 +134,6 @@ export default {
           el.dataset.id = 'latest';
         } else if (el.classList.contains('carousel__continue-watching')) {
           el.dataset.id = 'continue-watching';
-        } else if (el.classList.contains('carousel__popular')) {
-          el.dataset.id = 'popular';
         } else if (el.classList.contains('carousel__this-day-in-history')) {
           el.dataset.id = 'history';
         } else if (el.classList.contains('carousel__shows-latest-content')) {

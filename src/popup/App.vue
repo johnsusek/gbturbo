@@ -26,11 +26,7 @@
         </label>
       </el-form-item>
 
-      <el-form-item prop="modules_community" label="Homepage modules">
-        <div>
-          <el-switch v-model="modules_threepromo" />
-          <span class="switch-label">Three-promo strip</span>
-        </div>
+      <el-form-item label="Homepage modules">
         <div>
           <el-switch v-model="modules_frontdoor_promos" />
           <span class="switch-label">Billboards</span>
@@ -54,10 +50,6 @@
         <div>
           <el-switch v-model="modules_quicklooks" />
           <span class="switch-label">Quicklooks</span>
-        </div>
-        <div>
-          <el-switch v-model="modules_popular" />
-          <span class="switch-label">Popular</span>
         </div>
         <div>
           <el-switch v-model="modules_shows" />
@@ -119,15 +111,6 @@ export default {
       }
     },
 
-    modules_threepromo: {
-      get() {
-        return this.$store.state.config.modules_threepromo;
-      },
-      set(value) {
-        this.$store.commit('UPDATE_MODULES_THREEPROMO', value);
-      }
-    },
-
     modules_frontdoor_promos: {
       get() {
         return this.$store.state.config.modules_frontdoor_promos;
@@ -170,15 +153,6 @@ export default {
       },
       set(value) {
         this.$store.commit('UPDATE_MODULES_CONTINUE', value);
-      }
-    },
-
-    modules_popular: {
-      get() {
-        return this.$store.state.config.modules_popular;
-      },
-      set(value) {
-        this.$store.commit('UPDATE_MODULES_POPULAR', value);
       }
     },
 

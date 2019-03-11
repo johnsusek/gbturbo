@@ -13,13 +13,11 @@ export const store = new Vuex.Store({
       emsmallen: false,
       latest_grid: false,
       modules_community: true,
-      modules_threepromo: true,
       modules_frontdoor_promos: true,
       modules_infinite: true,
       modules_latest: true,
       modules_latest_premium: true,
       modules_continue: true,
-      modules_popular: true,
       modules_quicklooks: true,
       modules_shows: true,
       modules_history: true
@@ -50,10 +48,6 @@ export const store = new Vuex.Store({
       state.config.modules_community = !!value;
     },
 
-    UPDATE_MODULES_THREEPROMO(state, value) {
-      state.config.modules_threepromo = !!value;
-    },
-
     UPDATE_MODULES_FRONTDOOR_PROMOS(state, value) {
       state.config.modules_frontdoor_promos = !!value;
     },
@@ -72,10 +66,6 @@ export const store = new Vuex.Store({
 
     UPDATE_MODULES_CONTINUE(state, value) {
       state.config.modules_continue = !!value;
-    },
-
-    UPDATE_MODULES_POPULAR(state, value) {
-      state.config.modules_popular = !!value;
     },
 
     UPDATE_MODULES_QUICKLOOKS(state, value) {
@@ -106,10 +96,6 @@ browser.storage.sync.get('state').then(result => {
       result.state.config.modules_community !== false
     );
     store.commit(
-      'UPDATE_MODULES_THREEPROMO',
-      result.state.config.modules_threepromo !== false
-    );
-    store.commit(
       'UPDATE_MODULES_FRONTDOOR_PROMOS',
       result.state.config.modules_frontdoor_promos !== false
     );
@@ -128,10 +114,6 @@ browser.storage.sync.get('state').then(result => {
     store.commit(
       'UPDATE_MODULES_CONTINUE',
       result.state.config.modules_continue !== false
-    );
-    store.commit(
-      'UPDATE_MODULES_POPULAR',
-      result.state.config.modules_popular !== false
     );
     store.commit(
       'UPDATE_MODULES_QUICKLOOKS',
