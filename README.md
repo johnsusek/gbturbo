@@ -32,6 +32,11 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.3.0
+
+- Remove header size feature, it broke with the new header re-design. New redesign has a non-obnoxious header size by default now.
+- Remove Three Promo Strip and Popular toggles, as those sections have been removed from the homepage.
+
 ### 0.2.7
 
 - Add toggle for Latest Premium section

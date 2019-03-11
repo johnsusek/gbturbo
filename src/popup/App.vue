@@ -1,14 +1,6 @@
 <template>
   <main>
     <el-form :model="$store.state.config" label-position="top">
-      <el-form-item prop="header_size" label="Header">
-        <el-select v-model="header_size">
-          <el-option label="Mini" value="mini" />
-          <el-option label="Small" value="small" />
-          <el-option label="Full" value="full" />
-        </el-select>
-      </el-form-item>
-
       <el-form-item prop="reorder" label="Draggable homepage modules">
         <el-switch v-model="reorder" />
         <label>
@@ -75,15 +67,6 @@ export default {
   },
 
   computed: {
-    header_size: {
-      get() {
-        return this.$store.state.config.header_size;
-      },
-      set(value) {
-        this.$store.commit('UPDATE_HEADER_SIZE', value);
-      }
-    },
-
     reorder: {
       get() {
         return this.$store.state.config.reorder;
@@ -188,7 +171,7 @@ export default {
 
 <style>
 main {
-  width: 640px;
+  width: 480px;
 }
 
 .el-form--label-top .el-form-item__label {

@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import App from './App';
 import { store } from './store';
-import './headerMini.scss';
-import './headerSmall.scss';
 import './latestGrid.scss';
 import './reorderModules.scss';
 import './toggleModules.scss';

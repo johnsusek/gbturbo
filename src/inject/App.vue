@@ -11,22 +11,6 @@ export default {
       initial: true,
 
       handler(config) {
-        let topslot = document.querySelector('.kubrick-topslot');
-
-        if (config.header_size === 'mini') {
-          topslot.classList.add('site-container');
-          document.body.classList.add('gbt-mini');
-        } else {
-          topslot.classList.remove('site-container');
-          document.body.classList.remove('gbt-mini');
-        }
-
-        if (config.header_size === 'small') {
-          document.body.classList.add('gbt-emsmallen');
-        } else {
-          document.body.classList.remove('gbt-emsmallen');
-        }
-
         if (config.reorder) {
           document.body.classList.add('gbt-show-reorder');
         } else {
@@ -97,15 +81,6 @@ export default {
   },
 
   created() {
-    let upcomingNode = document.querySelector('.gb-promo-upcoming');
-    let upcoming;
-
-    if (upcomingNode) {
-      upcoming = upcomingNode.cloneNode(true);
-      let topslot = document.querySelector('.kubrick-topslot');
-      topslot.appendChild(upcoming);
-    }
-
     this.prepareDraggableModules();
     setTimeout(() => {
       this.createSortable();
