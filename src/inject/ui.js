@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import { store } from './store';
 import './latestGrid.scss';
+import './searchMove.scss';
 import './reorderModules.scss';
 import './toggleModules.scss';
 

@@ -18,6 +18,14 @@
         </label>
       </el-form-item>
 
+      <el-form-item label="Custom modules">
+        <div>
+          <el-switch v-model="modules_search" />
+          <span class="switch-label">Search</span>
+          <label> Please reload the page after changing this setting. </label>
+        </div>
+      </el-form-item>
+
       <el-form-item label="Homepage modules">
         <div>
           <el-switch v-model="modules_frontdoor_promos" />
@@ -103,6 +111,15 @@ export default {
       }
     },
 
+    modules_search: {
+      get() {
+        return this.$store.state.config.modules_search;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_MODULES_SEARCH', value);
+      }
+    },
+
     modules_infinite: {
       get() {
         return this.$store.state.config.modules_infinite;
@@ -180,10 +197,10 @@ main {
   color: #777;
 }
 
-.el-form-item__content > label {
+.el-form-item__content label {
   display: block;
   font-size: 12px;
-  color: #888;
+  color: #dedede;
   line-height: 1.3;
   padding-top: 3px;
 }

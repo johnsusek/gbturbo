@@ -1,0 +1,37 @@
+.site-container > .masthead-search-content {
+  width: 100% !important;
+  padding: 40px 0 33px 0 !important;
+
+  .dropdown--main {
+    margin-left: 0;
+  }
+
+  .dropdown--autocomplete {
+    z-index: 9;
+  }
+
+  .dropdown--main {
+    order: initial;
+    padding-left: 12px;
+    margin-right: 0;
+
+    select {
+      padding: 14px;
+      border-radius: 3px;
+      font-size: 18px;
+    }
+  }
+
+  .main-search input {
+    background: #464646;
+    padding: 14px;
+  }
+}
+
+.masthead-toggle-search {
+  display: none !important;
+}
+
+.gbt-hide-search .masthead-toggle-search {
+  display: flex !important;
+}

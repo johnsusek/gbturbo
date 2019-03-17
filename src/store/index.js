@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
       emsmallen: false,
       latest_grid: false,
       modules_community: true,
+      modules_search: true,
       modules_frontdoor_promos: true,
       modules_infinite: true,
       modules_latest: true,
@@ -73,6 +74,10 @@ export const store = new Vuex.Store({
 
     UPDATE_MODULES_HISTORY(state, value) {
       state.config.modules_history = !!value;
+    },
+
+    UPDATE_MODULES_SEARCH(state, value) {
+      state.config.modules_search = !!value;
     }
   }
 });
@@ -120,6 +125,10 @@ browser.storage.sync.get('state').then(result => {
     store.commit(
       'UPDATE_MODULES_HISTORY',
       result.state.config.modules_history !== false
+    );
+    store.commit(
+      'UPDATE_MODULES_SEARCH',
+      result.state.config.modules_search !== false
     );
   }
 });

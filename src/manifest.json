@@ -2,7 +2,7 @@
   "name": "Giant Bomb Turbo",
   "short_name": "Giant Bomb Turbo",
   "description": "Customize Giant Bomb (2018 redesign) to your hearts content.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "John Susek",
   "manifest_version": 2,
   "icons": {
@@ -21,7 +21,7 @@
     {
       "js": ["inject/lib/sortable.js", "inject/ui.js"],
       "css": ["inject/ui.css"],
-      "matches": ["https://www.giantbomb.com/*"],
+      "matches": ["https://www.giantbomb.com/"],
       "run_at": "document_end"
     }
   ],

@@ -6,6 +6,12 @@
 /* global Sortable */
 
 export default {
+  data() {
+    return {
+      movedSearch: false
+    };
+  },
+
   watch: {
     '$store.state.config': {
       initial: true,
@@ -76,6 +82,13 @@ export default {
         } else {
           document.body.classList.remove('gbt-hide-history');
         }
+
+        if (!config.modules_search) {
+          document.body.classList.add('gbt-hide-search');
+        } else {
+          document.body.classList.remove('gbt-hide-search');
+          this.moveSearch();
+        }
       }
     }
   },
@@ -88,6 +101,27 @@ export default {
   },
 
   methods: {
+    moveSearch() {
+      if (this.movedSearch) return;
+      this.movedSearch = true;
+
+      let newDiv = document.createElement('div');
+      let mastHeadSearchContent = document.querySelector(
+        '.masthead-search-content'
+      );
+      newDiv.insertAdjacentElement('afterbegin', mastHeadSearchContent);
+      newDiv.classList.add('site-container');
+      newDiv.classList.add('vertical-spacing');
+      newDiv.classList.add('site-container-search');
+      let referenceNode = document.querySelector('#wrapper > .kubrick-topslot');
+
+      referenceNode.parentNode.insertBefore(newDiv, referenceNode.nextSibling);
+
+      let searchDropdown = document.querySelector('.dropdown--main');
+      let searchForm = document.querySelector('form.js-site-search');
+      searchForm.insertAdjacentElement('beforeend', searchDropdown);
+    },
+
     prepareDraggableModules() {
       let gripIcon = browser.runtime.getURL('icons/drag-handle.svg');
       let dragHandle = `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`;

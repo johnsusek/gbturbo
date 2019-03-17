@@ -32,6 +32,10 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.4.0
+
+- Add search module
+
 ### 0.3.0
 
 - Remove header size feature, it broke with the new header re-design. New redesign has a non-obnoxious header size by default now.
