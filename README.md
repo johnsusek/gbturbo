@@ -32,6 +32,10 @@ Built extension (a zip of `dist/`) will be placed into `dist-zip/`
 
 ## Release notes
 
+### 0.4.1
+
+- Fix issue dragging modules when search module enabled
+
 ### 0.4.0
 
 - Add search module
