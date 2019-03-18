@@ -127,9 +127,7 @@ export default {
       let dragHandle = `<div class="gbt-drag-handle"><img src="${gripIcon}"></span></div>`;
 
       Array.from(
-        document.querySelectorAll(
-          '#wrapper > .site-container:not(.kubrick-topslot) > *'
-        )
+        document.querySelectorAll('#wrapper > .site-container:last-child > *')
       ).forEach(el => {
         if (el.classList.contains('frontdoor-community-section')) {
           el.dataset.id = 'community';
@@ -169,9 +167,7 @@ export default {
         console.error(error);
       }
 
-      let el = document.querySelector(
-        '#wrapper > .site-container:not(.kubrick-topslot)'
-      );
+      let el = document.querySelector('#wrapper > .site-container:last-child');
 
       Sortable.create(el, {
         group: 'gbt-homepage-pods',
